@@ -2,55 +2,56 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0f172a">
-  <title>תזכיר</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>תסקיר</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <header class="topbar">
-  <div><h1>תזכיר</h1><p>טופס דינמי והפקת PDF</p></div>
-  <div class="top-actions"><button id="saveBtn">שמור</button><button id="printBtn" class="outline">הפק PDF</button></div>
+  <div class="brand"><h1>תסקיר</h1><p>ניהול, תיעוד והפקת PDF</p></div>
+  <div class="top-actions">
+    <a class="nav-button" href="history.html">ארכיון</a>
+    <button id="saveBtn">שמור</button>
+    <button id="printBtn" class="outline">PDF</button>
+  </div>
 </header>
 <main class="layout">
   <section class="panel editor">
-    <h2>פרטי תזכיר</h2>
+    <h2>פרטי תסקיר</h2>
     <div class="grid3">
       <label>מספר סידורי<input id="serial" placeholder="לדוגמה 57/516586773"></label>
       <label>תאריך בדיקה<input id="inspectionDate" type="date"></label>
       <label>מועד בדיקה הבא<input id="nextDate" type="date"></label>
     </div>
     <div class="grid3">
-      <label>לקוח<select id="customerSelect"></select><button class="mini" data-dict="customers">+ הוסף לקוח</button></label>
-      <label>סוג בדיקה<select id="inspectionTypeSelect"></select><button class="mini" data-dict="inspection_types">+ הוסף סוג</button></label>
-      <label>תוצאה<select id="resultSelect"></select><button class="mini" data-dict="results">+ הוסף תוצאה</button></label>
+      <label>לקוח<select id="customerSelect"></select><button class="mini" data-dict="customers" type="button">+ הוסף לקוח</button></label>
+      <label>סוג בדיקה<select id="inspectionTypeSelect"></select><button class="mini" data-dict="inspection_types" type="button">+ הוסף סוג</button></label>
+      <label>תוצאה<select id="resultSelect"></select><button class="mini" data-dict="results" type="button">+ הוסף תוצאה</button></label>
     </div>
     <label>תיאור כללי<textarea id="summary" rows="3"></textarea></label>
-
-    <div class="section-title"><h2>פריטי אביזרי הרמה</h2><button id="addItemBtn" class="outline">+ הוסף שורה</button></div>
+    <div class="section-title"><h2>פריטי אביזרי הרמה</h2><button id="addItemBtn" class="outline" type="button">+ הוסף פריט</button></div>
     <div class="table-wrap"><table id="itemsTable"><thead><tr><th>#</th><th>תיאור</th><th>יצרן</th><th>מס' סידורי</th><th>עומס</th><th>זווית</th><th>מחיר</th><th></th></tr></thead><tbody></tbody></table></div>
-
-    <div class="section-title"><h2>ליקויים ואמצעים לתיקון</h2><button id="addDefectBtn" class="outline">+ הוסף שורה</button></div>
+    <div class="section-title"><h2>ליקויים ואמצעים לתיקון</h2><button id="addDefectBtn" class="outline" type="button">+ הוסף ליקוי</button></div>
     <div class="table-wrap"><table id="defectsTable"><thead><tr><th>#</th><th>תיאור הליקוי/האמצעי</th><th>מס' פנימי</th><th>תאריך אחרון</th><th></th></tr></thead><tbody></tbody></table></div>
     <p id="status" class="status"></p>
   </section>
-
   <section class="panel records">
-    <div class="section-title"><h2>תזכירים שמורים</h2><button id="newBtn" class="outline">חדש</button></div>
-    <input id="search" placeholder="חיפוש לפי מספר, לקוח או תיאור">
+    <div class="section-title"><h2>תסקירים אחרונים</h2><button id="newBtn" class="outline">חדש</button></div>
+    <input id="search" placeholder="חיפוש מהיר">
     <div id="recordsList" class="records-list"></div>
   </section>
 </main>
-
 <section id="printArea" class="print-area">
-  <div class="print-head"><h1>תזכיר בדיקה</h1><div id="pSerial"></div></div>
+  <div class="print-head"><h1>תסקיר בדיקה</h1><div id="pSerial"></div></div>
   <table class="meta"><tr><th>תאריך בדיקה</th><td id="pInspectionDate"></td><th>מועד בדיקה הבא</th><td id="pNextDate"></td></tr><tr><th>לקוח</th><td id="pCustomer"></td><th>סוג בדיקה</th><td id="pInspectionType"></td></tr><tr><th>תוצאה</th><td id="pResult"></td><th>תיאור כללי</th><td id="pSummary"></td></tr></table>
   <h2>תיאור אביזרי הרמה</h2><table id="pItems"><thead><tr><th>#</th><th>תיאור</th><th>יצרן</th><th>מס' סידורי</th><th>עומס</th><th>זווית</th><th>מחיר</th></tr></thead><tbody></tbody></table>
   <h2>תיאור הליקויים והאמצעים לתיקון</h2><table id="pDefects"><thead><tr><th>#</th><th>תיאור</th><th>מס' פנימי</th><th>תאריך אחרון</th></tr></thead><tbody></tbody></table>
-  <div class="footer-note">המסמך הופק ממערכת תזכיר</div>
+  <div class="footer-note">המסמך הופק ממערכת תסקיר</div>
 </section>
 <script src="app.js"></script>
-<!-- deployment trigger: 2026-07-10 -->
 </body>
 </html>
