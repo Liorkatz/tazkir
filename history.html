@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>ארכיון תסקירים</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><h1>ארכיון תסקירים</h1><p>חיפוש לפי לקוח או מספר סידורי</p></div>
+  <div class="top-actions"><a class="nav-button" href="index.html">תסקיר חדש</a></div>
+</header>
+<main class="history-layout">
+  <section class="panel history-filters">
+    <div class="grid2">
+      <label>חיפוש חופשי<input id="historySearch" placeholder="לקוח, מספר סידורי או תיאור"></label>
+      <label>לקוח<select id="customerFilter"><option value="">כל הלקוחות</option></select></label>
+    </div>
+    <div id="historyCount" class="history-count"></div>
+  </section>
+  <section class="panel">
+    <div id="historyList" class="history-list"></div>
+  </section>
+</main>
+<dialog id="detailsDialog" class="details-dialog">
+  <div class="dialog-head"><h2 id="detailTitle">פרטי תסקיר</h2><button id="closeDialog" class="remove">סגור</button></div>
+  <div id="detailsContent"></div>
+</dialog>
+<script src="history.js"></script>
+</body>
+</html>
