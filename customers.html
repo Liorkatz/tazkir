@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>לקוחות | תסקיר</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><h1>לקוחות</h1><p>כרטיס לקוח והיסטוריית תסקירים</p></div>
+  <div class="top-actions"><a class="nav-button" href="index.html">תסקיר חדש</a><a class="nav-button" href="equipment.html">מאגר פריטים</a></div>
+</header>
+<main class="layout">
+  <section class="panel editor">
+    <div class="section-title"><h2 id="formTitle">לקוח חדש</h2><button id="newCustomerBtn" class="outline" type="button">חדש</button></div>
+    <input id="customerId" type="hidden">
+    <div class="grid2">
+      <label>שם לקוח<input id="customerName" required></label>
+      <label>טלפון<input id="customerPhone" inputmode="tel"></label>
+      <label>דוא״ל<input id="customerEmail" type="email"></label>
+      <label>מספר רכב<input id="vehicleNumber"></label>
+    </div>
+    <label>כתובת<input id="customerAddress"></label>
+    <label>הערות<textarea id="customerNotes" rows="3"></textarea></label>
+    <label>פרטים נוספים<textarea id="customerDetails" rows="3"></textarea></label>
+    <div class="section-title"><button id="saveCustomerBtn" type="button">שמור לקוח</button></div>
+    <p id="customerStatus" class="status"></p>
+    <section id="customerHistory" hidden>
+      <div class="section-title"><h2>תסקירים של הלקוח</h2></div>
+      <div id="customerMemos" class="records-list"></div>
+    </section>
+  </section>
+  <section class="panel records">
+    <h2>רשימת לקוחות</h2>
+    <input id="customerSearch" placeholder="חיפוש לפי שם, טלפון, רכב או דוא״ל">
+    <div id="customersList" class="records-list"></div>
+  </section>
+</main>
+<script src="customers.js"></script>
+</body>
+</html>
