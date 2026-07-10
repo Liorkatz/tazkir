@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>מאגר פריטים | תסקיר</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><h1>מאגר פריטים</h1><p>ציוד פיזי, מספרים סידוריים וכושר הרמה</p></div>
+  <div class="top-actions"><a class="nav-button" href="index.html">תסקיר חדש</a><a class="nav-button" href="customers.html">לקוחות</a></div>
+</header>
+<main class="layout">
+  <section class="panel editor">
+    <div class="section-title"><h2 id="equipmentFormTitle">פריט חדש</h2><button id="newEquipmentBtn" class="outline" type="button">חדש</button></div>
+    <input id="equipmentId" type="hidden">
+    <div class="grid3">
+      <label>שם הפריט<input id="equipmentName" required></label>
+      <label>סוג פריט<select id="equipmentType"></select></label>
+      <label>מספר סידורי<input id="equipmentSerial"></label>
+      <label>יצרן<input id="equipmentManufacturer"></label>
+      <label>דגם<input id="equipmentModel"></label>
+      <label>מספר קטלוגי<input id="equipmentCatalog"></label>
+      <label>כושר הרמה<input id="equipmentLoad" type="number" step="any"></label>
+      <label>יחידה<select id="equipmentUnit"><option>kg</option><option>t</option></select></label>
+      <label>מספר ענפים<input id="equipmentBranches" type="number" min="1"></label>
+    </div>
+    <div id="angleFields" class="grid3" hidden>
+      <label>כושר הרמה 30°<input id="capacity30" type="number" step="any"></label>
+      <label>כושר הרמה 45°<input id="capacity45" type="number" step="any"></label>
+      <label>כושר הרמה 60°<input id="capacity60" type="number" step="any"></label>
+    </div>
+    <label>הערות<textarea id="equipmentNotes" rows="3"></textarea></label>
+    <div class="section-title"><button id="saveEquipmentBtn" type="button">שמור פריט</button></div>
+    <p id="equipmentStatus" class="status"></p>
+  </section>
+  <section class="panel records">
+    <h2>חיפוש מהיר</h2>
+    <input id="equipmentSearch" placeholder="שם, סוג, מספר סידורי, יצרן או דגם">
+    <div id="equipmentList" class="records-list"></div>
+  </section>
+</main>
+<script src="equipment.js"></script>
+</body>
+</html>
